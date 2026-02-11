@@ -27,7 +27,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Extracts metadata (tags, labels) for Docker
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -38,10 +40,6 @@ jobs:
             type=semver,pattern={{version}}
             latest
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      # Buildx and push the image
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:

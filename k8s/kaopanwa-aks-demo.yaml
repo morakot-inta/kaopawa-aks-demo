@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: app 
-        image: ghcr.io/morakot-inta/kaopawa-aks-demo:latest
+        image: nginx:latest 
         ports:
         - containerPort: 80 

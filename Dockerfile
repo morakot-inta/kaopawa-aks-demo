@@ -2,7 +2,7 @@ FROM node:lts-alpine as builder
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+RUN npm i
 COPY . .
 RUN npm install -g typescript
 RUN npm run build

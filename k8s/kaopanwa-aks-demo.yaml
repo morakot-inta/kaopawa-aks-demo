@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaopanwa-aks-demo 
+  labels:
+    app: kaopanwa-aks-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kaopanwa-aks-demo
+  template:
+    metadata:
+      labels:
+        app: kaopanwa-aks-demo 
+    spec:
+      containers:
+      - name: app 
+        image: ghcr.io/morakot-inta/kaopawa-aks-demo:latest
+        ports:
+        - containerPort: 80 

@@ -19,3 +19,45 @@ spec:
         image: ghcr.io/morakot-inta/kaopawa-aks-demo:latest 
         ports:
         - containerPort: 80 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kaopanwa-aks-demo
+spec:
+  selector:
+    app: kaopanwa-aks-demo
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kaopanwa-aks-demo
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+  - http:
+      paths:
+      - path: /app1
+        pathType: Prefix
+        backend:
+          service:
+            name: kaopanwa-aks-demo 
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kaopanwa-aks-demo
+            port:
+              number: 80
+
+       
+    

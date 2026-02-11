@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-    <h1>Kaopanwa AKS Demo</h1>
+    <h1>Kaopanwa & Morakot</h1>
     </>
   )
 }
